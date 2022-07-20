@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tic-Tac-Toe</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 
@@ -13,31 +13,45 @@
 <body>
   <!-- Build your game board, instructions, and score displays here! -->
 
-<header>
-  <h1 id="title">TIC TAC TOE</h1>
-</header>
-<main>
-  <section class="board">
-  <button class="grid"></button>
-  <button class="grid"></button>
-  <button class="grid"></button>
-  <button class="grid"></button>
-  <button class="grid"></button>
-  <button class="grid"></button>
-  <button class="grid"></button>
-  <button class="grid"></button>
-  <button class="grid"></button>
-</section>
+<main class="main">
+  <div class="content-wrap">
+    <div class="header">
+      <h1 id="title">TIC TAC TOE</h1>
+    </div>
+    <div class="game-wrap">
+      <div class="game-board">
+        <button class="grid"></button>
+        <button class="grid"></button>
+        <button class="grid"></button>
+        <button class="grid"></button>
+        <button class="grid"></button>
+        <button class="grid"></button>
+        <button class="grid"></button>
+        <button class="grid"></button>
+        <button class="grid"></button>
+      </div>
+    </div>
+    <div class="side-wrap">
+      <div class="player-wrap">
+        <div class="player-board">
+          <h2 id="current-turn">Current Turn:</h2>
+          <h2 id="play-one">Player One</h2>
+        </div>
+        <div class="results">
+          <h2 id="winner-display"></h2>
+          <h2 id="draw-display"></h2>
+        </div>
+        <div class="stats">
+          <h2>X Score:<span class="score" id="x"></span></h2>
+          <h2>O Score:<span class="score" id="o"></span></h2>
+        </div>
+      </div>
+      <div class="btn-wrap">
+        <button id="restart">Restart</button>
+      </div>
+    </div>
+  </div>
 </main>
-<aside>
-  <h2 id="turn-header">Current Turn:</h2>
-  <h2 id="display-turn">Player One</h2>
-  <h1 id="display-winner"></h1>
-  <h2 class="score">X Score:<span class="points" id="x"></span></h2>
-  <h2 class="score">O Score:<span class="points" id="o"></span></h2>
-  <h1 class="score" id="draw"></h1>
-  <button id="restart">Restart</button>
-</aside>
 
   <!-- Build your game board, instructions, and score displays here! -->
 <script type="text/javascript" src="js/app.js"></script>

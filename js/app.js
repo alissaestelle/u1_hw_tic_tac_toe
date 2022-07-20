@@ -10,11 +10,12 @@ let oScore = 0
 let currentTurn = 0
 let scoreCounter = 0
 
-const displayTurn = document.querySelector('#display-turn')
-const displayWinner = document.querySelector('#display-winner')
+const player = document.querySelector('#play-one')
+const playTwo = document.querySelector('#play-two')
+const winnerDisplay = document.querySelector('#winner-display')
 const xDisplay = document.querySelector('#x')
 const oDisplay = document.querySelector('#o')
-const drawDisplay = document.querySelector('#draw')
+const drawDisplay = document.querySelector('#draw-display')
 const restart = document.querySelector('#restart')
 
 let nodeList = document.querySelectorAll('.grid')
@@ -28,7 +29,6 @@ oDisplay.innerText = oScore
 // Functions For Game Logic Here
 
 const gameOutcomes = (player, score) => {
-  console.log(score)
   if (
     buttonArray[0] === player &&
     buttonArray[1] === player &&
@@ -78,15 +78,13 @@ const gameOutcomes = (player, score) => {
   ) {
     gameWinner(player, score)
   } else if (nullArray.includes(null) === false) {
-    drawDisplay.innerText = "It's a tie!"
+    drawDisplay.innerText = 'Tie Game!'
   }
 }
 
 const gameWinner = (player, score) => {
-  console.log(score)
-  displayWinner.innerText = `Player ${player} Wins!`
+  winnerDisplay.innerText = `Player ${player} Wins!`
   score++
-  console.log(xScore, oScore)
   player === 'X' ? (xDisplay.innerText = score) : (oDisplay.innerText = score)
   player === 'X' ? (xScore = score) : (oScore = score)
   nodeList.forEach((elem) => {
@@ -97,8 +95,6 @@ const gameWinner = (player, score) => {
 ////////////////////////////////
 // Event Listeners Here
 
-// Can I remove an event listener from a callback function?
-
 const gameLogic = (i) => {
   if (currentTurn % 2 === 0) {
     nodeList[i].append('X')
@@ -106,14 +102,16 @@ const gameLogic = (i) => {
     buttonArray[i] = 'X'
     nodeList[i].disabled = true
     gameOutcomes(xPlayer, xScore)
-    displayTurn.innerText = 'Player Two'
+    player.innerText = 'Player Two'
+    player.setAttribute('id', 'play-two')
   } else if (currentTurn % 2 !== 0) {
     nodeList[i].append('O')
     nullArray[i] = 'O'
     buttonArray[i] = 'O'
     nodeList[i].disabled = true
     gameOutcomes(oPlayer, oScore)
-    displayTurn.innerText = 'Player One'
+    player.innerText = 'Player One'
+    player.setAttribute('id', 'play-one')
   }
   currentTurn++
 }
@@ -125,6 +123,8 @@ for (let i = 0; i < buttonArray.length; i++) {
 }
 
 restart.addEventListener('click', () => {
+  winnerDisplay.innerText = ''
+  drawDisplay.innerText = ''
   nodeList = document.querySelectorAll('.grid')
   buttonArray = Array.from(nodeList)
   nullArray = [null, null, null, null, null, null, null, null, null]
